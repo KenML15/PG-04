@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="740.0" prefWidth="1250.0" stylesheets="@styles.css"
+            xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.MainController">
+
+    <!-- HEADER -->
+    <top>
+        <VBox styleClass="header-bar">
+            <padding><Insets bottom="12" left="20" right="20" top="12"/></padding>
+            <HBox alignment="CENTER_LEFT" spacing="15">
+                <Label styleClass="header-badge" text="PG-04"/>
+                <VBox>
+                    <Label styleClass="header-title" text="Listas Enlazadas Circulares · Pilas · Colas"/>
+                    <Label styleClass="header-sub" text="IF-3001 Algoritmos y Estructuras de Datos · UCR · Grupo 21 · Prof. Gilberth Chaves"/>
+                </VBox>
+            </HBox>
+        </VBox>
+    </top>
+
+    <center>
+        <TabPane fx:id="mainTabPane" styleClass="main-tabs" tabClosingPolicy="UNAVAILABLE">
+
+            <!-- ═══════════════════════════════════════════
+                 TAB 1: CIRCULAR LINKED LIST
+                 ═══════════════════════════════════════════ -->
+            <Tab text="Circular Linked List">
+                <AnchorPane>
+                    <HBox spacing="14"
+                          AnchorPane.topAnchor="12" AnchorPane.bottomAnchor="12"
+                          AnchorPane.leftAnchor="12" AnchorPane.rightAnchor="12">
+
+                        <!-- Canvas + Table (izquierda) -->
+                        <VBox spacing="8" HBox.hgrow="ALWAYS">
+                            <Label styleClass="panel-title" text="Lista enlazada circular: HEAD → nodos → HEAD"/>
+                            <StackPane style="-fx-background-color:white;-fx-border-color:#E8ECF2;-fx-border-radius:4;-fx-effect:dropshadow(gaussian,rgba(0,0,0,0.06),4,0,0,2);">
+                                <Canvas fx:id="canvasCLL" width="680" height="200"/>
+                            </StackPane>
+                            <Label styleClass="section-label" text="Contenido de la Lista Enlazada Circular"/>
+                            <TableView fx:id="tableCLL" VBox.vgrow="ALWAYS">
+                                <columns>
+                                    <TableColumn fx:id="cllColIndex" text="IndexOf"   prefWidth="75"/>
+                                    <TableColumn fx:id="cllColData"  text="Data"      prefWidth="90"/>
+                                    <TableColumn fx:id="cllColNext"  text="Next Data" prefWidth="100"/>
+                                    <TableColumn fx:id="cllColPrev"  text="Prev Data" prefWidth="100"/>
+                                    <TableColumn fx:id="cllColHead"  text="Head Data" prefWidth="100"/>
+                                    <TableColumn fx:id="cllColTail"  text="Tail Data" prefWidth="100"/>
+                                </columns>
+                            </TableView>
+                        </VBox>
+
+                        <!-- Panel controles (derecha) -->
+                        <VBox prefWidth="295" spacing="9" styleClass="panel">
+                            <Label styleClass="section-label" text="Valor"/>
+                            <TextField fx:id="txtCLLValue" promptText="Ingrese un número"/>
+
+                            <Label styleClass="section-label" text="Operaciones"/>
+                            <GridPane hgap="7" vgap="7">
+                                <columnConstraints>
+                                    <ColumnConstraints hgrow="ALWAYS"/>
+                                    <ColumnConstraints hgrow="ALWAYS"/>
+                                </columnConstraints>
+                                <rowConstraints>
+                                    <RowConstraints/>
+                                    <RowConstraints/>
+                                    <RowConstraints/>
+                                </rowConstraints>
+                                <Button fx:id="btnCLLAddFirst"  maxWidth="Infinity" styleClass="btn-primary" text="+ Agregar Inicio"     GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                                <Button fx:id="btnCLLAddLast"   maxWidth="Infinity" styleClass="btn-primary" text="Agregar Final +"      GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                                <Button fx:id="btnCLLAddRandom" maxWidth="Infinity" styleClass="btn-accent"  text="Agregar Aleatorio (30)" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.columnSpan="2"/>
+                                <Button fx:id="btnCLLSearch"    maxWidth="Infinity" styleClass="btn-primary" text="🔍 Buscar"             GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                                <Button fx:id="btnCLLRemove"    maxWidth="Infinity" styleClass="btn-ghost"   text="🗑 Eliminar"           GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                            </GridPane>
+                            <HBox spacing="7">
+                                <Button fx:id="btnCLLRemoveFirst" maxWidth="Infinity" styleClass="btn-ghost" text="Eliminar Head" HBox.hgrow="ALWAYS"/>
+                                <Button fx:id="btnCLLClear"       maxWidth="Infinity" styleClass="btn-ghost" text="Limpiar Todo"  HBox.hgrow="ALWAYS"/>
+                            </HBox>
+
+                            <Separator/>
+                            <Label styleClass="section-label" text="Registro de Operaciones"/>
+                            <ListView fx:id="listCLLLog" styleClass="steps-list" VBox.vgrow="ALWAYS"/>
+                        </VBox>
+                    </HBox>
+                </AnchorPane>
+            </Tab>
+
+            <!-- ═══════════════════════════════════════════
+                 TAB 2: CIRCULAR DOUBLY LINKED LIST
+                 ═══════════════════════════════════════════ -->
+            <Tab text="Doubly Circular Linked List">
+                <AnchorPane>
+                    <HBox spacing="14"
+                          AnchorPane.topAnchor="12" AnchorPane.bottomAnchor="12"
+                          AnchorPane.leftAnchor="12" AnchorPane.rightAnchor="12">
+
+                        <!-- Canvas + Table (izquierda) -->
+                        <VBox spacing="8" HBox.hgrow="ALWAYS">
+                            <Label styleClass="panel-title" text="Lista enlazada circular y doble: HEAD ↔ nodos ↔ HEAD"/>
+                            <StackPane style="-fx-background-color:white;-fx-border-color:#E8ECF2;-fx-border-radius:4;-fx-effect:dropshadow(gaussian,rgba(0,0,0,0.06),4,0,0,2);">
+                                <Canvas fx:id="canvasCDLL" width="680" height="200"/>
+                            </StackPane>
+                            <Label styleClass="section-label" text="Contenido de la Lista Enlazada Circular y Doble"/>
+                            <TableView fx:id="tableCDLL" VBox.vgrow="ALWAYS">
+                                <columns>
+                                    <TableColumn fx:id="cdllColId"    text="Id"       prefWidth="55"/>
+                                    <TableColumn fx:id="cdllColName"  text="Name"     prefWidth="130"/>
+                                    <TableColumn fx:id="cdllColPrice" text="Price"    prefWidth="85"/>
+                                    <TableColumn fx:id="cdllColStock" text="Stock"    prefWidth="70"/>
+                                    <TableColumn fx:id="cdllColType"  text="Type"     prefWidth="130"/>
+                                    <TableColumn fx:id="cdllColDate"  text="Reg Date" prefWidth="110"/>
+                                </columns>
+                            </TableView>
+                        </VBox>
+
+                        <!-- Formulario producto (derecha) -->
+                        <VBox prefWidth="315" spacing="8" styleClass="panel">
+                            <Label styleClass="section-label" text="Product Information"/>
+                            <GridPane hgap="8" vgap="6">
+                                <columnConstraints>
+                                    <ColumnConstraints minWidth="65"/>
+                                    <ColumnConstraints hgrow="ALWAYS"/>
+                                </columnConstraints>
+                                <rowConstraints>
+                                    <RowConstraints/><RowConstraints/><RowConstraints/>
+                                    <RowConstraints/><RowConstraints/><RowConstraints/>
+                                </rowConstraints>
+                                <Label text="Id:"       GridPane.rowIndex="0"/>
+                                <TextField fx:id="txtCDLLId"    promptText="auto"                  GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                                <Label text="Name:"     GridPane.rowIndex="1"/>
+                                <TextField fx:id="txtCDLLName"  promptText="Nombre del producto"   GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                                <Label text="Price:"    GridPane.rowIndex="2"/>
+                                <TextField fx:id="txtCDLLPrice" promptText="0.00"                  GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                                <Label text="Stock:"    GridPane.rowIndex="3"/>
+                                <TextField fx:id="txtCDLLStock" promptText="0"                     GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                                <Label text="Type:"     GridPane.rowIndex="4"/>
+                                <ComboBox fx:id="cbCDLLType" maxWidth="Infinity" promptText="Seleccionar tipo"
+                                          GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+                                <Label text="Date:"     GridPane.rowIndex="5"/>
+                                <DatePicker fx:id="dpCDLLDate" maxWidth="Infinity"
+                                            GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+                            </GridPane>
+
+                            <Separator/>
+                            <Label styleClass="section-label" text="Operaciones"/>
+                            <HBox spacing="7">
+                                <Button fx:id="btnCDLLAdd"    maxWidth="Infinity" styleClass="btn-primary" text="Agregar"   HBox.hgrow="ALWAYS"/>
+                                <Button fx:id="btnCDLLSearch" maxWidth="Infinity" styleClass="btn-primary" text="🔍 Buscar" HBox.hgrow="ALWAYS"/>
+                            </HBox>
+                            <HBox spacing="7">
+                                <Button fx:id="btnCDLLSortName"  maxWidth="Infinity" styleClass="btn-accent" text="Ord. Nombre" HBox.hgrow="ALWAYS"/>
+                                <Button fx:id="btnCDLLSortPrice" maxWidth="Infinity" styleClass="btn-accent" text="Ord. Precio" HBox.hgrow="ALWAYS"/>
+                            </HBox>
+                            <HBox spacing="7">
+                                <Button fx:id="btnCDLLRemove"      maxWidth="Infinity" styleClass="btn-ghost" text="🗑 Eliminar"      HBox.hgrow="ALWAYS"/>
+                                <Button fx:id="btnCDLLRemoveAll"   maxWidth="Infinity" styleClass="btn-ghost" text="🗑 Elim. Todos"   HBox.hgrow="ALWAYS"/>
+                                <Button fx:id="btnCDLLRemoveFirst" maxWidth="Infinity" styleClass="btn-ghost" text="🗑 Elim. Head"    HBox.hgrow="ALWAYS"/>
+                            </HBox>
+
+                            <Separator/>
+                            <Label styleClass="section-label" text="Registro de Operaciones"/>
+                            <ListView fx:id="listCDLLLog" styleClass="steps-list" VBox.vgrow="ALWAYS"/>
+                        </VBox>
+                    </HBox>
+                </AnchorPane>
+            </Tab>
+
+            <!-- ═══════════════════════════════════════════
+                 TAB 3: LINKED STACK
+                 ═══════════════════════════════════════════ -->
+            <Tab text="Linked Stack">
+                <AnchorPane>
+                    <HBox spacing="14"
+                          AnchorPane.topAnchor="12" AnchorPane.bottomAnchor="12"
+                          AnchorPane.leftAnchor="12" AnchorPane.rightAnchor="12">
+
+                        <!-- Canvas pila -->
+                        <VBox prefWidth="230" spacing="8" styleClass="panel">
+                            <Label styleClass="panel-title" text="Pila Enlazada"/>
+                            <StackPane style="-fx-background-color:#0D1B4B;-fx-background-radius:6;" VBox.vgrow="ALWAYS">
+                                <Canvas fx:id="canvasStack" width="210" height="480"/>
+                            </StackPane>
+                        </VBox>
+
+                        <!-- Tabla -->
+                        <VBox spacing="8" HBox.hgrow="ALWAYS">
+                            <Label styleClass="section-label" text="Contenido de la Pila Enlazada"/>
+                            <TableView fx:id="tableStack" VBox.vgrow="ALWAYS">
+                                <columns>
+                                    <TableColumn fx:id="stackColNode" text="Node"      prefWidth="90"/>
+                                    <TableColumn fx:id="stackColData" text="Data"      prefWidth="110"/>
+                                    <TableColumn fx:id="stackColNext" text="Next Node" prefWidth="110"/>
+                                </columns>
+                            </TableView>
+                        </VBox>
+
+                        <!-- Controles -->
+                        <VBox prefWidth="305" spacing="9" styleClass="panel">
+                            <Label styleClass="section-label" text="Valor"/>
+                            <TextField fx:id="txtStackValue" promptText="Ingrese un número"/>
+
+                            <Label styleClass="section-label" text="Operaciones"/>
+                            <HBox spacing="7">
+                                <Button fx:id="btnStackPush"       maxWidth="Infinity" styleClass="btn-primary" text="Apilar (Push)"           HBox.hgrow="ALWAYS"/>
+                                <Button fx:id="btnStackPushRandom" maxWidth="Infinity" styleClass="btn-accent"  text="Apilar Aleatorio (10)" HBox.hgrow="ALWAYS"/>
+                            </HBox>
+                            <HBox spacing="7">
+                                <Button fx:id="btnStackSearch" maxWidth="Infinity" styleClass="btn-primary" text="🔍 Buscar"        HBox.hgrow="ALWAYS"/>
+                                <Button fx:id="btnStackPop"    maxWidth="Infinity" styleClass="btn-ghost"   text="⬆ Desapilar"     HBox.hgrow="ALWAYS"/>
+                                <Button fx:id="btnStackRemove" maxWidth="Infinity" styleClass="btn-ghost"   text="🗑 Elim. Valor"   HBox.hgrow="ALWAYS"/>
+                            </HBox>
+                            <Button fx:id="btnStackClear" maxWidth="Infinity" styleClass="btn-ghost" text="Limpiar Todo"/>
+
+                            <Separator/>
+                            <Label styleClass="section-label" text="Registro de Operaciones"/>
+                            <ListView fx:id="listStackLog" styleClass="steps-list" VBox.vgrow="ALWAYS"/>
+                        </VBox>
+                    </HBox>
+                </AnchorPane>
+            </Tab>
+
+            <!-- ═══════════════════════════════════════════
+                 TAB 4: PRIORITY QUEUE
+                 ═══════════════════════════════════════════ -->
+            <Tab text="Priority Queue">
+                <AnchorPane>
+                    <HBox spacing="14"
+                          AnchorPane.topAnchor="12" AnchorPane.bottomAnchor="12"
+                          AnchorPane.leftAnchor="12" AnchorPane.rightAnchor="12">
+
+                        <!-- Canvas cola -->
+                        <VBox prefWidth="250" spacing="8" styleClass="panel">
+                            <Label styleClass="panel-title" text="Cola Enlazada"/>
+                            <StackPane style="-fx-background-color:#0D1B4B;-fx-background-radius:6;" VBox.vgrow="ALWAYS">
+                                <Canvas fx:id="canvasQueue" width="230" height="480"/>
+                            </StackPane>
+                        </VBox>
+
+                        <!-- Tabla clientes -->
+                        <VBox spacing="8" HBox.hgrow="ALWAYS">
+                            <Label styleClass="section-label" text="Contenido de la Cola de Prioridad Enlazada"/>
+                            <TableView fx:id="tableQueue" VBox.vgrow="ALWAYS">
+                                <columns>
+                                    <TableColumn fx:id="queueColId"       text="Id"              prefWidth="55"/>
+                                    <TableColumn fx:id="queueColName"     text="Name"            prefWidth="120"/>
+                                    <TableColumn fx:id="queueColAge"      text="Age"             prefWidth="60"/>
+                                    <TableColumn fx:id="queueColService"  text="Banking Service" prefWidth="160"/>
+                                    <TableColumn fx:id="queueColDate"     text="Date"            prefWidth="110"/>
+                                </columns>
+                            </TableView>
+                        </VBox>
+
+                        <!-- Formulario cliente bancario -->
+                        <VBox prefWidth="315" spacing="8" styleClass="panel">
+                            <Label styleClass="section-label" text="Bank Client Information"/>
+                            <GridPane hgap="8" vgap="6">
+                                <columnConstraints>
+                                    <ColumnConstraints minWidth="65"/>
+                                    <ColumnConstraints hgrow="ALWAYS"/>
+                                </columnConstraints>
+                                <rowConstraints>
+                                    <RowConstraints/><RowConstraints/><RowConstraints/>
+                                    <RowConstraints/><RowConstraints/>
+                                </rowConstraints>
+                                <Label text="Id:"      GridPane.rowIndex="0"/>
+                                <TextField fx:id="txtQueueId"   promptText="auto"             GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                                <Label text="Name:"    GridPane.rowIndex="1"/>
+                                <TextField fx:id="txtQueueName" promptText="Nombre del cliente" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                                <Label text="Age:"     GridPane.rowIndex="2"/>
+                                <TextField fx:id="txtQueueAge"  promptText="Edad"             GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                                <Label text="Service:" GridPane.rowIndex="3"/>
+                                <ComboBox fx:id="cbQueueService" maxWidth="Infinity" promptText="Seleccionar servicio"
+                                          GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                                <Label text="Date:"    GridPane.rowIndex="4"/>
+                                <DatePicker fx:id="dpQueueDate" maxWidth="Infinity"
+                                            GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+                            </GridPane>
+                            <Label fx:id="lblQueuePriorityInfo" wrapText="true"
+                                   style="-fx-font-size:10px;-fx-text-fill:#8896A5;"
+                                   text="Prioridad: mayor=1 a 3=la más alta; mayor=2 igual; default prioridad 3"/>
+
+                            <Separator/>
+                            <Label styleClass="section-label" text="Operaciones"/>
+                            <HBox spacing="7">
+                                <Button fx:id="btnQueueEnqueue"      maxWidth="Infinity" styleClass="btn-primary" text="Encolar"        HBox.hgrow="ALWAYS"/>
+                                <Button fx:id="btnQueueSearch"       maxWidth="Infinity" styleClass="btn-primary" text="🔍 Buscar"      HBox.hgrow="ALWAYS"/>
+                                <Button fx:id="btnQueueCompareFront" maxWidth="Infinity" styleClass="btn-ghost"   text="Comp. Front"    HBox.hgrow="ALWAYS"/>
+                            </HBox>
+                            <HBox spacing="7">
+                                <Button fx:id="btnQueuePeek"    maxWidth="Infinity" styleClass="btn-accent" text="Peek / Front"  HBox.hgrow="ALWAYS"/>
+                                <Button fx:id="btnQueueDequeue" maxWidth="Infinity" styleClass="btn-ghost"  text="⬅ Desencolar"  HBox.hgrow="ALWAYS"/>
+                            </HBox>
+                            <HBox spacing="7">
+                                <Button fx:id="btnQueueSort"  maxWidth="Infinity" styleClass="btn-accent" text="Ordenar"      HBox.hgrow="ALWAYS"/>
+                                <Button fx:id="btnQueueClear" maxWidth="Infinity" styleClass="btn-ghost"  text="Limpiar Todo" HBox.hgrow="ALWAYS"/>
+                            </HBox>
+
+                            <Separator/>
+                            <Label styleClass="section-label" text="Registro de Operaciones"/>
+                            <ListView fx:id="listQueueLog" styleClass="steps-list" VBox.vgrow="ALWAYS"/>
+                        </VBox>
+                    </HBox>
+                </AnchorPane>
+            </Tab>
+
+        </TabPane>
+    </center>
+
+    <!-- STATUS BAR -->
+    <bottom>
+        <HBox styleClass="status-bar" alignment="CENTER_LEFT" spacing="20">
+            <padding><Insets left="20" right="20" top="5" bottom="5"/></padding>
+            <Label styleClass="status-left" text="IF-3001 · Algoritmos y Estructuras de Datos · UCR · Grupo 21"/>
+            <Label styleClass="status-right" text="Prof. Lic. Gilberth Chaves Avila · PG-04"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>
