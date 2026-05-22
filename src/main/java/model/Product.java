@@ -8,7 +8,7 @@ public class Product {
     private String name;
     private double price;
     private int stock;
-    private String type; // Categorías requeridas (pueden ser Cajas, Gestión de Cuentas, etc. según la UI de la guía)
+    private String type;
     private LocalDate date;
 
     public Product(int id, String name, double price, int stock, String type, LocalDate date) {

@@ -2,11 +2,11 @@ package model.linkedList;
 
 import model.Node;
 
-// Al colocar "model.linkedList.List<T>" le dejas claro al compilador que es tu interfaz y no la de Java
+
 public class CircularDoublyLinkedList<T> implements List<T> {
 
-    private Node<T> head; // Inicio de la lista
-    private Node<T> tail; // Fin de la lista
+    private Node<T> head;
+    private Node<T> tail;
     private ListType listType;
 
     public CircularDoublyLinkedList() {
@@ -34,7 +34,7 @@ public class CircularDoublyLinkedList<T> implements List<T> {
     @Override
     public int size() throws ListException {
         if (isEmpty()) {
-            return 0; // Es mejor retornar 0 que lanzar excepción si solo queremos saber el tamaño
+            return 0;
         }
         Node<T> aux = head;
         int count = 0;

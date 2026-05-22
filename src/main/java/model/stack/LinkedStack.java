@@ -2,9 +2,7 @@ package model.stack;
 
 import model.Node;
 
-/**
- * Implementación dinámica de una Pila basada en Nodos Enlazados.
- */
+
 public class LinkedStack<T> implements MyStack<T> {
     private Node<T> topNode; // Puntero al elemento en el tope
     private int counter;
