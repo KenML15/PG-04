@@ -27,7 +27,7 @@
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="controller.HelloController">
 
-    <!-- HEADER -->
+
     <top>
         <VBox styleClass="header-bar">
             <padding><Insets bottom="12" left="20" right="20" top="12"/></padding>
@@ -44,16 +44,11 @@
     <center>
         <TabPane fx:id="mainTabPane" styleClass="main-tabs" tabClosingPolicy="UNAVAILABLE">
 
-            <!-- ═══════════════════════════════════════════
-                 TAB 1: CIRCULAR LINKED LIST
-                 ═══════════════════════════════════════════ -->
             <Tab text="Circular Linked List">
                 <AnchorPane>
                     <HBox spacing="14"
                           AnchorPane.topAnchor="12" AnchorPane.bottomAnchor="12"
                           AnchorPane.leftAnchor="12" AnchorPane.rightAnchor="12">
-
-                        <!-- Canvas + Table (izquierda) -->
                         <VBox spacing="8" HBox.hgrow="ALWAYS">
                             <Label styleClass="panel-title" text="Lista enlazada circular: HEAD → nodos → HEAD"/>
                             <StackPane style="-fx-background-color:white;-fx-border-color:#E8ECF2;-fx-border-radius:4;-fx-effect:dropshadow(gaussian,rgba(0,0,0,0.06),4,0,0,2);">
@@ -72,7 +67,6 @@
                             </TableView>
                         </VBox>
 
-                        <!-- Panel controles (derecha) -->
                         <VBox prefWidth="295" spacing="9" styleClass="panel">
                             <Label styleClass="section-label" text="Valor"/>
                             <TextField fx:id="txtCLLValue" promptText="Ingrese un número"/>
@@ -107,16 +101,12 @@
                 </AnchorPane>
             </Tab>
 
-            <!-- ═══════════════════════════════════════════
-                 TAB 2: CIRCULAR DOUBLY LINKED LIST
-                 ═══════════════════════════════════════════ -->
             <Tab text="Doubly Circular Linked List">
                 <AnchorPane>
                     <HBox spacing="14"
                           AnchorPane.topAnchor="12" AnchorPane.bottomAnchor="12"
                           AnchorPane.leftAnchor="12" AnchorPane.rightAnchor="12">
 
-                        <!-- Canvas + Table (izquierda) -->
                         <VBox spacing="8" HBox.hgrow="ALWAYS">
                             <Label styleClass="panel-title" text="Lista enlazada circular y doble: HEAD ↔ nodos ↔ HEAD"/>
                             <StackPane style="-fx-background-color:white;-fx-border-color:#E8ECF2;-fx-border-radius:4;-fx-effect:dropshadow(gaussian,rgba(0,0,0,0.06),4,0,0,2);">
@@ -135,7 +125,6 @@
                             </TableView>
                         </VBox>
 
-                        <!-- Formulario producto (derecha) -->
                         <VBox prefWidth="315" spacing="8" styleClass="panel">
                             <Label styleClass="section-label" text="Product Information"/>
                             <GridPane hgap="8" vgap="6">
@@ -187,16 +176,13 @@
                 </AnchorPane>
             </Tab>
 
-            <!-- ═══════════════════════════════════════════
-                 TAB 3: LINKED STACK
-                 ═══════════════════════════════════════════ -->
             <Tab text="Linked Stack">
                 <AnchorPane>
                     <HBox spacing="14"
                           AnchorPane.topAnchor="12" AnchorPane.bottomAnchor="12"
                           AnchorPane.leftAnchor="12" AnchorPane.rightAnchor="12">
 
-                        <!-- Canvas pila -->
+
                         <VBox prefWidth="230" spacing="8" styleClass="panel">
                             <Label styleClass="panel-title" text="Pila Enlazada"/>
                             <StackPane style="-fx-background-color:#0D1B4B;-fx-background-radius:6;" VBox.vgrow="ALWAYS">
@@ -204,7 +190,7 @@
                             </StackPane>
                         </VBox>
 
-                        <!-- Tabla -->
+
                         <VBox spacing="8" HBox.hgrow="ALWAYS">
                             <Label styleClass="section-label" text="Contenido de la Pila Enlazada"/>
                             <TableView fx:id="tableStack" VBox.vgrow="ALWAYS">
@@ -216,7 +202,7 @@
                             </TableView>
                         </VBox>
 
-                        <!-- Controles -->
+
                         <VBox prefWidth="305" spacing="9" styleClass="panel">
                             <Label styleClass="section-label" text="Valor"/>
                             <TextField fx:id="txtStackValue" promptText="Ingrese un número"/>
@@ -241,16 +227,14 @@
                 </AnchorPane>
             </Tab>
 
-            <!-- ═══════════════════════════════════════════
-                 TAB 4: PRIORITY QUEUE
-                 ═══════════════════════════════════════════ -->
+
             <Tab text="Priority Queue">
                 <AnchorPane>
                     <HBox spacing="14"
                           AnchorPane.topAnchor="12" AnchorPane.bottomAnchor="12"
                           AnchorPane.leftAnchor="12" AnchorPane.rightAnchor="12">
 
-                        <!-- Canvas cola -->
+
                         <VBox prefWidth="250" spacing="8" styleClass="panel">
                             <Label styleClass="panel-title" text="Cola Enlazada"/>
                             <StackPane style="-fx-background-color:#0D1B4B;-fx-background-radius:6;" VBox.vgrow="ALWAYS">
@@ -258,7 +242,7 @@
                             </StackPane>
                         </VBox>
 
-                        <!-- Tabla clientes -->
+
                         <VBox spacing="8" HBox.hgrow="ALWAYS">
                             <Label styleClass="section-label" text="Contenido de la Cola de Prioridad Enlazada"/>
                             <TableView fx:id="tableQueue" VBox.vgrow="ALWAYS">
@@ -272,7 +256,7 @@
                             </TableView>
                         </VBox>
 
-                        <!-- Formulario cliente bancario -->
+
                         <VBox prefWidth="315" spacing="8" styleClass="panel">
                             <Label styleClass="section-label" text="Bank Client Information"/>
                             <GridPane hgap="8" vgap="6">
@@ -328,7 +312,7 @@
         </TabPane>
     </center>
 
-    <!-- STATUS BAR -->
+
     <bottom>
         <HBox styleClass="status-bar" alignment="CENTER_LEFT" spacing="20">
             <padding><Insets left="20" right="20" top="5" bottom="5"/></padding>

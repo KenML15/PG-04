@@ -27,7 +27,7 @@ import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
 
-    // ── TAB 1: Circular Linked List ─────────────────────────────────────────
+
     @FXML private Canvas canvasCLL;
     @FXML private TableView<CLLRow>    tableCLL;
     @FXML private TableColumn<CLLRow,Integer> cllColIndex, cllColData, cllColNext, cllColPrev, cllColHead, cllColTail;
@@ -36,7 +36,7 @@ public class MainController implements Initializable {
             btnCLLSearch, btnCLLRemove, btnCLLRemoveFirst, btnCLLClear;
     @FXML private ListView<String> listCLLLog;
 
-    // ── TAB 2: Circular Doubly Linked List ──────────────────────────────────
+
     @FXML private Canvas canvasCDLL;
     @FXML private TableView<Product>   tableCDLL;
     @FXML private TableColumn<Product,Integer>   cdllColId, cdllColStock;
@@ -49,7 +49,6 @@ public class MainController implements Initializable {
             btnCDLLRemove, btnCDLLRemoveAll, btnCDLLRemoveFirst;
     @FXML private ListView<String> listCDLLLog;
 
-    // ── TAB 3: Linked Stack ─────────────────────────────────────────────────
     @FXML private Canvas canvasStack;
     @FXML private TableView<StackRow>   tableStack;
     @FXML private TableColumn<StackRow,String> stackColNode, stackColNext;
@@ -59,7 +58,7 @@ public class MainController implements Initializable {
             btnStackPop, btnStackRemove, btnStackClear;
     @FXML private ListView<String> listStackLog;
 
-    // ── TAB 4: Priority Queue ───────────────────────────────────────────────
+
     @FXML private Canvas canvasQueue;
     @FXML private TableView<QueueRow>   tableQueue;
     @FXML private TableColumn<QueueRow,Integer> queueColId, queueColAge;
@@ -72,7 +71,7 @@ public class MainController implements Initializable {
             btnQueuePeek, btnQueueDequeue, btnQueueSort, btnQueueClear;
     @FXML private ListView<String> listQueueLog;
 
-    // ── Estructuras de datos ────────────────────────────────────────────────
+
     private final CircularLinkedList<Integer>       cll   = new CircularLinkedList<>();
     private final CircularDoublyLinkedList<Product> cdll  = new CircularDoublyLinkedList<>();
     private final LinkedStack<Integer>              stack = new LinkedStack<>();
@@ -82,9 +81,7 @@ public class MainController implements Initializable {
     private int cdllNextId = 1;
     private int queueNextId = 1;
 
-    // ════════════════════════════════════════════════════════════════════════
-    // INITIALIZE
-    // ════════════════════════════════════════════════════════════════════════
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         setupCLLTable();
@@ -95,9 +92,6 @@ public class MainController implements Initializable {
         bindButtons();
     }
 
-    // ────────────────────────────────────────────────────────────────────────
-    // SETUP: tablas
-    // ────────────────────────────────────────────────────────────────────────
     private void setupCLLTable() {
         cllColIndex.setCellValueFactory(new PropertyValueFactory<>("index"));
         cllColData .setCellValueFactory(new PropertyValueFactory<>("data"));
@@ -137,9 +131,7 @@ public class MainController implements Initializable {
                 "Cajas","Gestión de Cuentas","Préstamos","Inversiones","Seguros","Atención al Cliente"));
     }
 
-    // ────────────────────────────────────────────────────────────────────────
-    // BIND BUTTONS
-    // ────────────────────────────────────────────────────────────────────────
+
     private void bindButtons() {
         // CLL
         btnCLLAddFirst  .setOnAction(e -> cllAddFirst());
@@ -174,9 +166,6 @@ public class MainController implements Initializable {
         btnQueueClear       .setOnAction(e -> queueClear());
     }
 
-    // ════════════════════════════════════════════════════════════════════════
-    // TAB 1 – CIRCULAR LINKED LIST
-    // ════════════════════════════════════════════════════════════════════════
     private void cllAddFirst() {
         try {
             int val = Integer.parseInt(txtCLLValue.getText().trim());
@@ -269,9 +258,6 @@ public class MainController implements Initializable {
 
     private void logCLL(String msg) { listCLLLog.getItems().add(0, msg); }
 
-    // ════════════════════════════════════════════════════════════════════════
-    // TAB 2 – CIRCULAR DOUBLY LINKED LIST (Products)
-    // ════════════════════════════════════════════════════════════════════════
     private void cdllAdd() {
         try {
             String name  = txtCDLLName.getText().trim();
@@ -393,9 +379,6 @@ public class MainController implements Initializable {
 
     private void logCDLL(String msg) { listCDLLLog.getItems().add(0, msg); }
 
-    // ════════════════════════════════════════════════════════════════════════
-    // TAB 3 – LINKED STACK
-    // ════════════════════════════════════════════════════════════════════════
     private void stackPush() {
         try {
             int val = Integer.parseInt(txtStackValue.getText().trim());
@@ -403,14 +386,16 @@ public class MainController implements Initializable {
             logStack("push(" + val + ") TOP = [" + val + "] + ...");
             refreshStack();
         } catch (NumberFormatException ex) { logStack("⚠ Ingrese un número válido"); }
-        catch (StackException ex) { logStack(" " + ex.getMessage()); }
+        catch (StackException ex) { logStack("⚠ " + ex.getMessage()); }
     }
 
     private void stackPushRandom() {
         int added = 0;
         while (added < 10) {
-            try { stack.push(rnd.nextInt(100) + 1); added++; }
-            catch (StackException e) { break; }
+            try {
+                stack.push(rnd.nextInt(100) + 1);
+                added++;
+            } catch (StackException e) { break; }
         }
         logStack("Apilados " + added + " valores aleatorios");
         refreshStack();
@@ -419,20 +404,12 @@ public class MainController implements Initializable {
     private void stackSearch() {
         try {
             int val = Integer.parseInt(txtStackValue.getText().trim());
-            // Recorrer para buscar indexOf
-            int size = stack.size();
-            Integer[] items = new Integer[size];
-            for (int i = 0; i < size; i++) items[i] = stack.pop();
-            boolean found = false;
-            for (int i = 0; i < size; i++) {
-                if (items[i] == val) {
-                    logStack("indexOf(" + val + ") = " + (i + 1));
-                    found = true;
-                }
+            int pos = stack.indexOf(val);   // usa indexOf directamente del LinkedStack
+            if (pos != -1) {
+                logStack("indexOf(" + val + ") = " + pos);
+            } else {
+                logStack("indexOf(" + val + ") = -1 (no encontrado)");
             }
-            // Restaurar
-            for (int i = size - 1; i >= 0; i--) stack.push(items[i]);
-            if (!found) logStack("indexOf(" + val + ") = -1 (no encontrado)");
         } catch (NumberFormatException ex) { logStack("⚠ Ingrese un número válido"); }
         catch (StackException ex) { logStack("⚠ " + ex.getMessage()); }
     }
@@ -457,15 +434,15 @@ public class MainController implements Initializable {
                 stack.push(items[i]);
             }
             if (found) logStack("remove(" + val + ") ✓");
-            else logStack("Valor no encontrado: " + val);
+            else logStack("⚠ Valor no encontrado: " + val);
             refreshStack();
-        } catch (NumberFormatException ex) { logStack("Ingrese un número válido"); }
-        catch (StackException ex) { logStack(" " + ex.getMessage()); }
+        } catch (NumberFormatException ex) { logStack("⚠ Ingrese un número válido"); }
+        catch (StackException ex) { logStack("⚠ " + ex.getMessage()); }
     }
 
     private void stackClear() {
         stack.clear();
-        logStack("Pila limpiad");
+        logStack("Pila limpiada");
         refreshStack();
     }
 
@@ -488,9 +465,7 @@ public class MainController implements Initializable {
 
     private void logStack(String msg) { listStackLog.getItems().add(0, msg); }
 
-    // ════════════════════════════════════════════════════════════════════════
-    // TAB 4 – PRIORITY QUEUE
-    // ════════════════════════════════════════════════════════════════════════
+
     private void queueEnqueue() {
         try {
             String name    = txtQueueName.getText().trim();
@@ -588,9 +563,6 @@ public class MainController implements Initializable {
 
     private void logQueue(String msg) { listQueueLog.getItems().add(0, msg); }
 
-    // ════════════════════════════════════════════════════════════════════════
-    // INNER ROW CLASSES (para TableView)
-    // ════════════════════════════════════════════════════════════════════════
 
     public static class CLLRow {
         private final int index, data, nextData, prevData, headData, tailData;

@@ -2,9 +2,8 @@ package model.stack;
 
 import model.Node;
 
-
 public class LinkedStack<T> implements MyStack<T> {
-    private Node<T> topNode; // Puntero al elemento en el tope
+    private Node<T> topNode;
     private int counter;
 
     public LinkedStack() {
@@ -30,9 +29,7 @@ public class LinkedStack<T> implements MyStack<T> {
 
     @Override
     public T peek() throws StackException {
-        if (isEmpty()) {
-            throw new StackException("Stack is empty");
-        }
+        if (isEmpty()) throw new StackException("Stack is empty");
         return topNode.data;
     }
 
@@ -42,24 +39,39 @@ public class LinkedStack<T> implements MyStack<T> {
     }
 
     @Override
-    public void push(T element) {
+    public void push(T element) throws StackException {
+        // LinkedStack no tiene límite, pero declara throws para cumplir la interfaz
         Node<T> newNode = new Node<>(element);
-        if (!isEmpty()) {
-            newNode.next = topNode; // El nuevo nodo apunta hacia abajo en la pila
-        }
+        if (!isEmpty()) newNode.next = topNode;
         topNode = newNode;
         counter++;
     }
 
     @Override
     public T pop() throws StackException {
-        if (isEmpty()) {
-            throw new StackException("Stack is empty");
-        }
+        if (isEmpty()) throw new StackException("Stack is empty");
         T data = topNode.data;
-        topNode = topNode.next; // El tope se mueve al nodo de abajo
+        topNode = topNode.next;
         counter--;
         return data;
+    }
+
+    @Override
+    public int indexOf(T element) throws StackException {
+        if (isEmpty()) throw new StackException("Stack is empty");
+        Node<T> aux = topNode;
+        int pos = 1;
+        while (aux != null) {
+            if (aux.data != null && aux.data.equals(element)) return pos;
+            pos++;
+            aux = aux.next;
+        }
+        return -1;
+    }
+
+    @Override
+    public boolean contains(T element) throws StackException {
+        return indexOf(element) != -1;
     }
 
     @Override

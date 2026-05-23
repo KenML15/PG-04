@@ -66,6 +66,22 @@ public class ArrayStack<T> implements MyStack<T> {
     }
 
     @Override
+    public int indexOf(T element) throws StackException {
+        if (isEmpty()) throw new StackException("Stack is empty");
+        for (int i = topIndex; i >= 0; i--) {
+            if (array[i] != null && array[i].equals(element)) {
+                return (topIndex - i) + 1;
+            }
+        }
+        return -1;
+    }
+
+    @Override
+    public boolean contains(T element) throws StackException {
+        return indexOf(element) != -1;
+    }
+
+    @Override
     public String toString() {
         if (isEmpty()) return "Pila Vacía (ArrayStack)";
         StringBuilder sb = new StringBuilder("TOP -> ");
